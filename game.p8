@@ -8,6 +8,9 @@ function _init()
  #include todo_list.lua
  #include dice.lua
  #include instructions.lua
+ #include controller.lua
+ dice_select_phase = true
+ activity_select_phase = false
 
  start_game()
 end
@@ -26,7 +29,8 @@ function start_game()
 end
 
 function start_game_update()
-
+  controller:update()
+  instructions:update()
 end
 
 function start_game_draw()
@@ -35,9 +39,15 @@ function start_game_draw()
   stats:draw()
   todo_list:draw()
   for die in all(dice) do
+    if die.is_selected then pal(9,7) end
     rectfill(die.x0,die.y0,calculate_x1(die.x0, die.width),calculate_y1(die.y0,die.width),9)
+    print(die.score,die.x0,die.y0,0)
+    pal()
   end
-  print(instructions, 2, 128 - 6, 7)
+  print(instructions.text, 2, 128 - 6, 7)
+  -- local foobar = {1,2}
+  -- foobar.remove(foobar[1])
+  print(#dice,0,0,7)
 end
 
 function calculate_x1(x0, width)
@@ -46,6 +56,17 @@ end
 
 function calculate_y1(y0, height)
   return y0 + height - 1
+end
+
+function remove_element(e,t)
+  local new_table = {}
+  for i=1,#t,1 do
+    if not (e == t[i]) then
+      add(new_table,t[i])
+    end
+  end
+
+  return new_table
 end
 
 __sfx__

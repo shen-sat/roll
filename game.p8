@@ -45,9 +45,9 @@ function start_game_draw()
     pal()
   end
   print(instructions.text, 2, 128 - 6, 7)
+  print(#activities, 0, 0, 7)
+  print(#todo_list.used_activities, 10, 10, 7)
   -- local foobar = {1,2}
-  -- foobar.remove(foobar[1])
-  print(#dice,0,0,7)
 end
 
 function calculate_x1(x0, width)
@@ -64,6 +64,15 @@ function remove_element(e,t)
     if not (e == t[i]) then
       add(new_table,t[i])
     end
+  end
+
+  return new_table
+end
+
+function copy_table(table)
+  new_table = {}
+  for k,v in pairs(table) do
+    new_table[k] = v
   end
 
   return new_table

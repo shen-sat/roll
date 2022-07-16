@@ -1,16 +1,31 @@
 breakfast = {
   text = 'breakfast',
-  is_selected = false
+  is_selected = false,
+  die = {
+    score,
+    x0,
+    y0
+  }
 }
 
 jogging = {
   text = 'jogging',
-  is_selected = false
+  is_selected = false,
+  die = {
+    score,
+    x0,
+    y0
+  }
 }
 
 base_jumping = {
   text = 'base jumping',
-  is_selected = false
+  is_selected = false,
+  die = {
+    score,
+    x0,
+    y0
+  }
 }
 
 activities = { breakfast, jogging, base_jumping }
@@ -35,6 +50,7 @@ todo_list = {
   dice_x_border = 95,
   dice_width = 14,
   activities = activities,
+  used_activities = {},
   die,
   draw = function(self)
     -- back panel
@@ -42,17 +58,28 @@ todo_list = {
     -- front panel
     rectfill(self.x0 + self.front_border,self.y0 + self.front_border,self:x1() -self.front_border,self:y1() - self.front_border,self.front_col)
     local activity_y0 = self.y0 + self.activities_y_border
-    
+    local die_x0 = self.x0 + self.dice_x_border
+    -- active activities
     for activity in all(self.activities) do
       print(activity.text, self.x0 + self.activities_x_border, activity_y0, 1)
       -- dice holes
-      local die_x0 = self.x0 + self.dice_x_border
       rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),1)
+
       if activity.is_selected then
         rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),7)
         print(self.die.score, die_x0, activity_y0, 0)
+        -- add these values to objects in case we convert it into a used activity 
+        activity.die.x0 = die_x0
+        activity.die.y0 = activity_y0
+        if self.die then activity.die.score = self.die.score end
       end
+      
       activity_y0 += 16
+    end
+    -- used activities
+    for used_activity in all(self.used_activities) do
+      rectfill(used_activity.die.x0,used_activity.die.y0, calculate_x1(used_activity.die.x0, self.dice_width),calculate_y1(used_activity.die.y0, self.dice_width),9)
+      print(used_activity.die.score, used_activity.die.x0, used_activity.die.y0, 0)
     end
   end
 }

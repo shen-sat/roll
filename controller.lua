@@ -29,7 +29,7 @@ controller = {
 				selected_die = dice[index]
 				selected_die.is_selected = true
 			elseif btnp(5) then
-				todo_list.die = selected_die
+				todo_list.die = copy_table(selected_die)
 				dice = remove_element(selected_die, dice)
 				dice_select_phase = false
 				activity_select_phase = true
@@ -63,6 +63,10 @@ controller = {
 				selected_activity.is_selected = true
 			elseif btnp(5) then
 				-- submit die score with activity
+				selected_activity.is_selected = false
+				add(todo_list.used_activities,copy_table(selected_activity))
+				activities = remove_element(selected_activity, activities)
+
 				dice_select_phase = true
 				activity_select_phase = false
 			end

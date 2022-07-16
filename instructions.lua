@@ -1,0 +1,1 @@
+instructions = 'select a die!'

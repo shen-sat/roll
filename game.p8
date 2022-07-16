@@ -130,11 +130,31 @@ function _init()
     end
   }
 
+  
 
-  -- set up activities_list
-    -- set up activities (with dice slot)
-  -- set up dice
-  -- set up instructions
+  d1 = {
+    x0 = 41,
+    y0 = 98,
+    score = 1,
+    width = 14
+  }
+  d2 = {
+    x0 = 57,
+    y0 = 98,
+    score = 1,
+    width = 14
+
+  }
+  d3 = {
+    x0 = 73,
+    y0 = 98,
+    score = 1,
+    width = 14
+  }
+
+  dice = { d1, d2, d3 }
+
+  instructions = 'select a die!'
 
  start_game()
 
@@ -163,6 +183,10 @@ function start_game_draw()
   profile:draw()
   stats_list:draw()
   todo_list:draw()
+  for die in all(dice) do
+    rectfill(die.x0,die.y0,calculate_x1(die.x0, die.width),calculate_y1(die.y0,die.width),9)
+  end
+  print(instructions, 2, 128 - 6, 7)
 end
 
 function calculate_x1(x0, width)

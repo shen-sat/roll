@@ -70,6 +70,8 @@ controller = {
 				dice_select_phase = true
 				activity_select_phase = false
 			end
+		elseif activity_play_phase then
+			
 		end
 	end
 }

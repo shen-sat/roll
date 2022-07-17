@@ -11,6 +11,7 @@ function _init()
  #include controller.lua
  dice_select_phase = true
  activity_select_phase = false
+ activity_play_phase = false
 
  start_game()
 end
@@ -45,7 +46,7 @@ function start_game_draw()
     pal()
   end
   print(instructions.text, 2, 128 - 6, 7)
-  print(#activities, 0, 0, 7)
+  print(#all_activities, 0, 0, 7)
   print(#todo_list.used_activities, 10, 10, 7)
   -- local foobar = {1,2}
 end

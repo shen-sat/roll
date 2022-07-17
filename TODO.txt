@@ -1,3 +1,24 @@
-controller switched flags on and off on objects
+- create_and_roll_dice
+- create_activities
+
+Make dummy play_activity_phase (just press X to move to next phase)
+Then test it all works:
+- select die
+- assign die
+- play activity
+-- do it all until you've used all dice and see if you replenish dice and activities
+
+Then it's play activity time:
+- print all text and fit to screen
+- get bars to go down/up instantly
+
+Word wrap: use a separator like '|'
+
+Split 
+Start at left side of screenprint wor 
+
+
+
+
 
 

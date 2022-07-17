@@ -28,7 +28,75 @@ base_jumping = {
   }
 }
 
-activities = { breakfast, jogging, base_jumping }
+-- iron_clothes = {
+--   text = 'iron clothes',
+--   is_selected = false,
+--   die = {
+--     score,
+--     x0,
+--     y0
+--   }
+-- }
+
+-- place_dice_games = {
+--   text = 'place dice games',
+--   is_selected = false,
+--   die = {
+--     score,
+--     x0,
+--     y0
+--   }
+-- }
+
+
+create_activity = function(text)
+  local activity = {
+    text = text,
+    is_selected = false,
+    die = {
+      score,
+      x0,
+      y0 
+    }
+  }
+
+  return activity
+end
+
+all_activities = {
+  create_activity('breakfast'),
+  create_activity('jogging'),
+  create_activity('base jumping'),
+  create_activity('iron clothes'),
+  create_activity('place dice games'),
+  create_activity('do washing up')
+}
+
+pick_activities = function()
+  local result = {}
+
+  local num = #all_activities
+  local index = flr(rnd(num)) + 1
+  local activity = all_activities[index]
+  add(result, activity)
+  all_activities = remove_element(activity,all_activities)
+
+  num = #all_activities
+  index = flr(rnd(num)) + 1
+  activity = all_activities[index]
+  add(result, activity)
+  all_activities = remove_element(activity,all_activities)
+
+  num = #all_activities
+  index = flr(rnd(num)) + 1
+  activity = all_activities[index]
+  add(result, activity)
+  all_activities = remove_element(activity,all_activities)
+
+  return result
+end
+
+activities = pick_activities()
 
 
 todo_list = {

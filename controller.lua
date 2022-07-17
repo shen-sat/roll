@@ -1,7 +1,14 @@
 controller = {
 	update = function(self)
 		if dice_select_phase then
-			music_player:play(32)
+			if #dice == 3 then
+				music_player:play(32)
+			elseif #dice == 2 then
+				music_player:play(36)
+			elseif #dice == 1 then
+				music_player:play(40)
+			end
+			
 
 			-- check all dice for is_selected flag
 			local index
@@ -114,6 +121,8 @@ controller = {
 				end
 			end
 		elseif boss_phase_eng then
+			music_player:play(44)
+
 			local text
 			if meters[1].score >= 36 then
 				text = boss_text.eng.high
@@ -169,6 +178,7 @@ controller = {
 				final_text_flag = true
 			end
 		elseif final_phase then
+			music_player:play(12)
 			final_score = (meters[3].score + meters[2].score + meters[1].score)/3
 
 			local text

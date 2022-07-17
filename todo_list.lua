@@ -28,7 +28,7 @@ todo_list = {
     local die_x0 = self.x0 + self.dice_x_border
     -- active activities
     for activity in all(self.activities) do
-      if activity_play_phase or boss_phase then return end
+      if activity_play_phase or boss_phase_eng or boss_phase_sua or boss_phase_int or final_phase then return end
       print(activity.text, self.x0 + self.activities_x_border, activity_y0, 1)
       -- dice holes
       rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),1)

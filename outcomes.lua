@@ -89,7 +89,7 @@ play_dice_games_outcomes = {
       int = 0
     },
     med = {
-      text = "you roll averagely...you gain an average number of meeples from your cousin. you're an average sort of person all things told...i bet you’ve never even wondered who would win in a fight between a tiger and a shark",
+      text = "you roll averagely...you gain an average number of meeples from your cousin. youre an average sort of person all things told...i bet youve never even wondered who would win in a fight between a tiger and a shark",
       eng = 1,
       sua = 0,
       int = -1

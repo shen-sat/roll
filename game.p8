@@ -24,12 +24,17 @@ function start_game()
   #include instructions.lua
   #include controller.lua
   #include music_player.lua
+  #include boss_text.lua
+  #include final_text.lua
   dice_select_phase = true
   activity_select_phase = false
   activity_play_phase = false
   activity_text_flag = false
-  boss_phase = false
+  boss_phase_eng = false
+  boss_phase_sua = false
+  boss_phase_int = false
   boss_text_flag = false
+  final_text_flag = false
 
   play_music_flag = false
 
@@ -59,7 +64,11 @@ function start_game_draw()
     print(die.score,die.x0,die.y0,0)
     pal()
   end
-  print(instructions.text, 2, 128 - 6, 7)
+  if #dice == 0 and activity_play_phase then
+    print(instructions.text, 2, 128 - 6, 11)
+  else
+    print(instructions.text, 2, 128 - 6, 7)
+  end
   print(foobar, 0, 0, 7)
 
   if (#tbx_lines>0) tbx_draw()

@@ -107,19 +107,88 @@ controller = {
 				activity_play_phase = false
 
 				if #dice == 0 then
-					boss_phase = true
+					boss_phase_eng = true
 					boss_text_flag = true
 				else
 					dice_select_phase = true
 				end
 			end
-		elseif boss_phase then
+		elseif boss_phase_eng then
+			local text
+			if meters[1].score >= 36 then
+				text = boss_text.eng.high
+			else
+				text = boss_text.eng.low
+			end
+
 			if boss_text_flag then
 				boss_text_flag = false
-				textbox('boss text',nil,nil,7)
+				textbox(text,nil,nil,7)
 			end
 
 			if btnp(5) then
+				boss_phase_eng = false
+				boss_phase_sua = true
+				boss_text_flag = true
+				-- start_game()
+			end
+		elseif boss_phase_sua then
+			local text
+			if meters[2].score >= 36 then
+				text = boss_text.sua.high
+			else
+				text = boss_text.sua.low
+			end
+
+			if boss_text_flag then
+				boss_text_flag = false
+				textbox(text,nil,nil,7)
+			end
+
+			if btnp(5) then
+				boss_phase_sua = false
+				boss_phase_int = true
+				boss_text_flag = true
+			end
+		elseif boss_phase_int then
+			local text
+			if meters[3].score >= 36 then
+				text = boss_text.int.high
+			else
+				text = boss_text.int.low
+			end
+
+			if boss_text_flag then
+				boss_text_flag = false
+				textbox(text,nil,nil,7)
+			end
+
+			if btnp(5) then
+				boss_phase_int = false
+				final_phase = true
+				final_text_flag = true
+			end
+		elseif final_phase then
+			final_score = (meters[3].score + meters[2].score + meters[1].score)/3
+
+			local text
+			if final_score > 18 * 3 then
+				text = final_text.high
+			elseif final_score > 18 * 2 then
+				text = final_text.mid_high
+			elseif final_score > 18 then
+				text = final_text.mid_low
+			else
+				text = final_text.low
+			end
+
+			if final_text_flag then
+				final_text_flag = false
+				textbox(text,nil,nil,7)
+			end
+
+			if btnp(5) then
+				final_phase = false
 				start_game()
 			end
 		end

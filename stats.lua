@@ -1,19 +1,19 @@
-cha = {
-  text = 'cha',
-  score = 10
+int = {
+  text = 'int',
+  score = 72
 }
 
 sta = {
   text = 'sta',
-  score = 10
+  score = 72
 }
 
-hea = {
-  text = 'hea',
-  score = 10
+cha = {
+  text = 'cha',
+  score = 72
 }
 
-meters = {cha, sta, hea}
+meters = {int, sta, cha}
 
 stats = {
   x0 = 30,

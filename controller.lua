@@ -1,6 +1,8 @@
 controller = {
 	update = function(self)
 		if dice_select_phase then
+			music_player:play(32)
+
 			-- check all dice for is_selected flag
 			local index
 			for i=1,#dice,1 do
@@ -17,18 +19,21 @@ controller = {
 			end
 
 			if btnp(1) then
+				sfx(56, -1, 0, 8)
 				selected_die.is_selected = false
 				index = (index + 1) % #dice
 				if index == 0 then index = #dice end	
 				selected_die = dice[index]
 				selected_die.is_selected = true
 			elseif btnp(0) then
+				sfx(56, -1, 0, 8)
 				selected_die.is_selected = false
 				index = (index - 1) % #dice
 				if index == 0 then index = #dice end
 				selected_die = dice[index]
 				selected_die.is_selected = true
 			elseif btnp(5) then
+				sfx(57, -1, 0, 8)
 				todo_list.die = copy_table(selected_die)
 				dice = remove_element(selected_die, dice)
 				dice_select_phase = false
@@ -50,29 +55,35 @@ controller = {
 			end
 
 			if btnp(3) then
+				sfx(56, -1, 0, 8)
 				selected_activity.is_selected = false
 				index = (index + 1) % #activities
 				if index == 0 then index = #activities end	
 				selected_activity = activities[index]
 				selected_activity.is_selected = true
 			elseif btnp(2) then
+				sfx(56, -1, 0, 8)
 				selected_activity.is_selected = false
 				index = (index - 1) % #activities
 				if index == 0 then index = #activities end
 				selected_activity = activities[index]
 				selected_activity.is_selected = true
 			elseif btnp(5) then
+				sfx(57, -1, 8, 8)
 				activity_select_phase = false
 				activity_play_phase = true
 				activity_text_flag = true
 			end
 		elseif activity_play_phase then
+			music_player:play(4)
 			local index
 			for i=1,#activities,1 do
 				if activities[i].is_selected then index = i end
 			end
 
 			local selected_activity = activities[index]
+
+			-- 
 
 			if activity_text_flag then
 				activity_text_flag = false

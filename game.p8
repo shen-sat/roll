@@ -33,6 +33,8 @@ function start_game()
 
   play_music_flag = false
 
+  foobar = 0
+
   tbx_init()
   game.update = start_game_update
   game.draw = start_game_draw
@@ -58,11 +60,9 @@ function start_game_draw()
     pal()
   end
   print(instructions.text, 2, 128 - 6, 7)
-  print(#all_activities, 0, 0, 7)
-  print(#todo_list.used_activities, 10, 10, 7)
-  -- cls()
+  print(foobar, 0, 0, 7)
+
   if (#tbx_lines>0) tbx_draw()
-  -- local foobar = {1,2}
 end
 
 function calculate_x1(x0, width)
@@ -177,6 +177,16 @@ function textbox(text,x,y,col)
  tbx_y=y or 36 --shen
  tbx_col=col or 7
  tbx_text=text
+end
+
+function get_outcome(die_score, results)
+  if die_score == 1 or die_score == 2 then
+    return results.low
+  elseif die_score == 3 or die_score == 4 then
+    return results.med
+  elseif die_score == 5 or die_score == 6 then
+    return results.high
+  end
 end
 
 __sfx__

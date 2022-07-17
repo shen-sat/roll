@@ -34,8 +34,28 @@ todo_list = {
       rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),1)
 
       if activity.is_selected then
-        rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),7)
-        print(self.die.score, die_x0, activity_y0, 0)
+        pal(9,7)
+        if self.die.score == 1 then
+          spr(0,die_x0,activity_y0,2,2)
+        elseif self.die.score == 2 then
+          spr(2,die_x0,activity_y0,2,2)
+        elseif self.die.score == 3 then
+          spr(4,die_x0,activity_y0,2,2)
+        elseif self.die.score == 4 then
+          spr(6,die_x0,activity_y0,2,2)
+        elseif self.die.score == 5 then
+          spr(8,die_x0,activity_y0,2,2)
+        elseif self.die.score == 6 then
+          spr(10,die_x0,activity_y0,2,2)
+        else
+          -- rectfill(die.x0,die.y0,calculate_x1(die.x0, die.width),calculate_y1(die.y0,die.width),9)
+        end
+        pal()
+
+        -- rectfill(die_x0,activity_y0, calculate_x1(die_x0, self.dice_width),calculate_y1(activity_y0, self.dice_width),7)
+        -- print(self.die.score, die_x0, activity_y0, 0)
+        
+
         -- add these values to objects in case we convert it into a used activity 
         activity.die.x0 = die_x0
         activity.die.y0 = activity_y0
@@ -46,8 +66,24 @@ todo_list = {
     end
     -- used activities
     for used_activity in all(self.used_activities) do
-      rectfill(used_activity.die.x0,used_activity.die.y0, calculate_x1(used_activity.die.x0, self.dice_width),calculate_y1(used_activity.die.y0, self.dice_width),9)
-      print(used_activity.die.score, used_activity.die.x0, used_activity.die.y0, 0)
+      if used_activity.die.score == 1 then
+        spr(0,used_activity.die.x0,used_activity.die.y0,2,2)
+      elseif used_activity.die.score == 2 then
+        spr(2,used_activity.die.x0,used_activity.die.y0,2,2)
+      elseif used_activity.die.score == 3 then
+        spr(4,used_activity.die.x0,used_activity.die.y0,2,2)
+      elseif used_activity.die.score == 4 then
+        spr(6,used_activity.die.x0,used_activity.die.y0,2,2)
+      elseif used_activity.die.score == 5 then
+        spr(8,used_activity.die.x0,used_activity.die.y0,2,2)
+      elseif used_activity.die.score == 6 then
+        spr(10,used_activity.die.x0,used_activity.die.y0,2,2)
+      else
+        -- rectfill(die.x0,die.y0,calculate_x1(die.x0, die.width),calculate_y1(die.y0,die.width),9)
+      end
+      
+      -- rectfill(used_activity.die.x0,used_activity.die.y0, calculate_x1(used_activity.die.x0, self.dice_width),calculate_y1(used_activity.die.y0, self.dice_width),9)
+      -- print(used_activity.die.score, used_activity.die.x0, used_activity.die.y0, 0)
     end
   end
 }

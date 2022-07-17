@@ -62,11 +62,6 @@ controller = {
 				selected_activity = activities[index]
 				selected_activity.is_selected = true
 			elseif btnp(5) then
-				-- selected_activity.is_selected = false
-				-- add(todo_list.used_activities,copy_table(selected_activity))
-				-- activities = remove_element(selected_activity, activities)
-
-				dice_select_phase = false
 				activity_select_phase = false
 				activity_play_phase = true
 				activity_text_flag = true
@@ -90,12 +85,24 @@ controller = {
 				add(todo_list.used_activities,copy_table(selected_activity))
 				activities = remove_element(selected_activity, activities)
 
-				dice_select_phase = true
 				activity_play_phase = false
+
+				if #dice == 0 then
+					boss_phase = true
+					boss_text_flag = true
+				else
+					dice_select_phase = true
+				end
+			end
+		elseif boss_phase then
+			if boss_text_flag then
+				boss_text_flag = false
+				textbox('boss text',nil,nil,7)
 			end
 
-
-			-- if (btnp (4)) textbox(selected_activity.desc,nil,nil,12)
+			if btnp(5) then
+				start_game()
+			end
 		end
 	end
 }

@@ -3,21 +3,6 @@ version 18
 __lua__
 function _init()
  game = {}
- #include profile.lua
- #include stats.lua
- #include todo_list.lua
- #include dice.lua
- #include instructions.lua
- #include controller.lua
- dice_select_phase = true
- activity_select_phase = false
- activity_play_phase = false
-
-  tbx_init()
-  sample_text="hello, this is a basic function for printing text letter by letter with text wrapping. it works pretty well."
-  sample_text2="it is a little janky and not very optimized, but it is good enough for my needs and it clocks in just under 300 tokens."
- 
-
  start_game()
 end
 
@@ -30,6 +15,20 @@ function _draw()
 end
 
 function start_game()
+  #include profile.lua
+  #include stats.lua
+  #include todo_list.lua
+  #include dice.lua
+  #include instructions.lua
+  #include controller.lua
+  dice_select_phase = true
+  activity_select_phase = false
+  activity_play_phase = false
+  activity_text_flag = false
+  boss_phase = false
+  boss_text_flag = false
+  tbx_init()
+
   game.update = start_game_update
   game.draw = start_game_draw
 end

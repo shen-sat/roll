@@ -83,28 +83,6 @@ controller = {
 
 			local selected_activity = activities[index]
 
-			-- breakfast_outcomes = {
-			--     low = {
-			--       text = "you tuck into a hearty bowl of non-trademarked wheat bricks. \ndelicious!",
-			--       eng = 1,
-			--       sua = 1,
-			--       int = 1
-			--     },
-			--     med = {
-			--       text = "by the time you make it to the second half of your huge bowl of cereal, its all soggy. \nyou dutifully and humourlessly shovel spoonfuls of mush into your face till its time to leave.",
-			--       eng = 2,
-			--       sua = -1,
-			--       int = 0
-			--     },
-			--     high = {
-			--       text = "your bowl runneth over with processed grains. \nin fact, you pour yourself more cereal than you have bowl. \nyour body is now 14.2% fibre. ",
-			--       eng = -1,
-			--       sua = -2,
-			--       int = -1
-			--     }
-			-- }
-
-
 			local die_score = selected_activity.die.score
 
 			foobar = die_score
@@ -114,6 +92,10 @@ controller = {
 			if activity_text_flag then
 				activity_text_flag = false
 				textbox(outcome.text,nil,nil,7)
+
+				meters[1].score = work_out_score(meters[1].score + (outcome.eng * 12))
+				meters[2].score = work_out_score(meters[2].score + (outcome.sua * 12))
+				meters[3].score = work_out_score(meters[3].score + (outcome.int * 12))
 			end
 
 			if btnp(5) then

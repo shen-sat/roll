@@ -41,19 +41,19 @@ jogging_outcomes = {
 
 base_jumping_outcomes = {
     low = {
-      text = "you arrive at a normal set of stairs. clutching the straps of your parachute you successfully jump down 3 stairs \nwhat a thrill!",
+      text = "you arrive at a normal set of stairs. clutching the straps of your parachute you successfully jump down 3 stairs. what a thrill!",
       eng = 1,
       sua = -1,
       int = 1
     },
     med = {
-      text = "you arrive at a humongous set of stairs. you clutch your parachute straps and jump down 7 stairs; \nthe parachute doesnt deploy in time and you tumble, landing face first in a bed of petunias",
+      text = "you arrive at a humongous set of stairs. you clutch your parachute straps and jump down 7 stairs;the parachute doesnt deploy in time and you tumble, landing face first in a bed of petunias",
       eng = -1,
       sua = -1,
       int = -1
     },
     high = {
-      text = "you arrive at a x storey building. health and safety barriers put a halt to your awesomeness... \nyou make cool whooshing noises with your mouth as you take the elevator back down",
+      text = "you arrive at a x storey building. health and safety barriers put a halt to your awesomeness...you make cool whooshing noises with your mouth as you take the elevator back down",
       eng = 1,
       sua = -2,
       int = 2

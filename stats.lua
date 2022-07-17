@@ -3,17 +3,17 @@ int = {
   score = 72
 }
 
-sta = {
-  text = 'sta',
+eng = {
+  text = 'eng',
   score = 72
 }
 
-cha = {
-  text = 'cha',
+sua = {
+  text = 'sua',
   score = 72
 }
 
-meters = {int, sta, cha}
+meters = { eng, sua, int }
 
 stats = {
   x0 = 30,

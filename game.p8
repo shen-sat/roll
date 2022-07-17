@@ -84,7 +84,7 @@ function start_game_draw()
   else
     print(instructions.text, 2, 128 - 6, 7)
   end
-  print(foobar, 0, 0, 7)
+  -- print(foobar, 0, 0, 7)
 
   if (#tbx_lines>0) tbx_draw()
 end

@@ -35,6 +35,7 @@ function start_game()
   boss_phase_int = false
   boss_text_flag = false
   final_text_flag = false
+  activity_music_flag = false
 
   play_music_flag = false
 

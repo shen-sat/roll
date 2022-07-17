@@ -13,6 +13,11 @@ function _init()
  activity_select_phase = false
  activity_play_phase = false
 
+  tbx_init()
+  sample_text="hello, this is a basic function for printing text letter by letter with text wrapping. it works pretty well."
+  sample_text2="it is a little janky and not very optimized, but it is good enough for my needs and it clocks in just under 300 tokens."
+ 
+
  start_game()
 end
 
@@ -32,6 +37,8 @@ end
 function start_game_update()
   controller:update()
   instructions:update()
+  tbx_update()
+  -- if (btnp (4)) textbox(sample_text,nil,nil,12)
 end
 
 function start_game_draw()
@@ -48,6 +55,8 @@ function start_game_draw()
   print(instructions.text, 2, 128 - 6, 7)
   print(#all_activities, 0, 0, 7)
   print(#todo_list.used_activities, 10, 10, 7)
+  -- cls()
+  if (#tbx_lines>0) tbx_draw()
   -- local foobar = {1,2}
 end
 
@@ -77,6 +86,92 @@ function copy_table(table)
   end
 
   return new_table
+end
+
+-- text wrapping
+
+function tbx_init()
+tbx_counter=1
+tbx_width=29 --characters not pixels -- shen
+tbx_lines={}
+tbx_cur_line=1
+tbx_com_line=0
+tbx_text=nil
+tbx_x=nil
+tbx_y=nil
+end
+
+
+function tbx_update()
+ if tbx_text!=nil then 
+ local first=nil
+ local last=nil
+ local rows=flr(#tbx_text/tbx_width)+2
+ 
+ --split text into lines
+ for i=1,rows do
+  first =first or 1+i*tbx_width-tbx_width
+  last = last or i*tbx_width
+   
+  --cut off incomplete words
+  if sub(tbx_text,last+1,last+1)!="" or sub(tbx_text,last,last)!=" " and sub(tbx_text,last+1,last+1)!=" " then
+   for j=1,tbx_width/3 do
+    if sub(tbx_text,last-j,last-j)==" " and i<rows then
+     last=last-j
+     break
+    end
+   end
+  end
+  
+  --create line
+  --if first char is a space, remove the space
+  if sub(tbx_text,first,first)==" " then
+   tbx_lines[i]=sub(tbx_text,first+1,last)
+  else
+   tbx_lines[i]=sub(tbx_text,first,last)
+  end
+   first=last
+   last=last+tbx_width
+ end
+ 
+ --lines are now made
+ 
+ 
+ --change lines after printing
+ if tbx_counter%tbx_width==0 and tbx_cur_line<#tbx_lines then
+  tbx_com_line+=1
+  tbx_cur_line+=1
+  tbx_counter=1  
+ end
+ --update text counter
+ tbx_counter+=1
+ if (sub(tbx_text,tbx_counter,tbx_counter)=="") tbx_counter+=1
+ end
+end
+
+
+function tbx_draw()
+ if #tbx_lines>0 then
+  --print current line one char at a time
+  print(sub(tbx_lines[tbx_cur_line],1,tbx_counter),tbx_x,tbx_y+tbx_cur_line*6-6,tbx_col)
+
+ 
+  --print complete lines
+  for i=0,tbx_com_line do
+   if i>0 then
+    print(tbx_lines[i],tbx_x,tbx_y+i*6-6,tbx_col)
+   end
+  end
+ end 
+end
+
+
+function textbox(text,x,y,col)
+ tbx_init()
+ tbx_x=x or 6 --shen
+ tbx_y=y or 36 --shen
+ tbx_col=col or 7
+ tbx_text=text
 end
 
 __sfx__

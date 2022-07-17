@@ -62,16 +62,40 @@ controller = {
 				selected_activity = activities[index]
 				selected_activity.is_selected = true
 			elseif btnp(5) then
-				-- submit die score with activity
+				-- selected_activity.is_selected = false
+				-- add(todo_list.used_activities,copy_table(selected_activity))
+				-- activities = remove_element(selected_activity, activities)
+
+				dice_select_phase = false
+				activity_select_phase = false
+				activity_play_phase = true
+				activity_text_flag = true
+			end
+		elseif activity_play_phase then
+			local index
+			for i=1,#activities,1 do
+				if activities[i].is_selected then index = i end
+			end
+
+			local selected_activity = activities[index]
+
+			if activity_text_flag then
+				activity_text_flag = false
+				textbox(selected_activity.desc,nil,nil,7)
+			end
+
+			if btnp(5) then
+				textbox('',nil,nil,7)
 				selected_activity.is_selected = false
 				add(todo_list.used_activities,copy_table(selected_activity))
 				activities = remove_element(selected_activity, activities)
 
 				dice_select_phase = true
-				activity_select_phase = false
+				activity_play_phase = false
 			end
-		elseif activity_play_phase then
-			
+
+
+			-- if (btnp (4)) textbox(selected_activity.desc,nil,nil,12)
 		end
 	end
 }

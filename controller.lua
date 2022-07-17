@@ -80,9 +80,22 @@ controller = {
 				activity_select_phase = false
 				activity_play_phase = true
 				activity_text_flag = true
+				activity_music_flag = true
 			end
 		elseif activity_play_phase then
-			music_player:play(4)
+			if #dice == 3 then 
+				music_player:play(4)
+			else
+				if activity_music_flag then
+					activity_music_flag = false
+					local rand_num = flr(rnd(2))
+					if rand_num == 0 then
+						music_player:play(4)
+					else
+						music_player:play(16)
+					end
+				end
+			end
 			local index
 			for i=1,#activities,1 do
 				if activities[i].is_selected then index = i end
@@ -121,7 +134,7 @@ controller = {
 				end
 			end
 		elseif boss_phase_eng then
-			music_player:play(44)
+			music_player:play(8)
 
 			local text
 			if meters[1].score >= 36 then
@@ -178,7 +191,7 @@ controller = {
 				final_text_flag = true
 			end
 		elseif final_phase then
-			music_player:play(12)
+			music_player:play(44)
 			final_score = (meters[3].score + meters[2].score + meters[1].score)/3
 
 			local text

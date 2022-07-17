@@ -12,6 +12,12 @@ Then it's play activity time:
 - print all text and fit to screen
 - get bars to go down/up instantly
 
+- put stats at halfway
+- put in dice dots
+- put in die_score into activity description
+- add face
+- add gifs
+
 Word wrap: use a separator like '|'
 
 Split 

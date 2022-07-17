@@ -1,16 +1,16 @@
 int = {
   text = 'int',
-  score = 72
+  score = 36
 }
 
 eng = {
   text = 'eng',
-  score = 72
+  score = 36
 }
 
 sua = {
   text = 'sua',
-  score = 72
+  score = 36
 }
 
 meters = { eng, sua, int }

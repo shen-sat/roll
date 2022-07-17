@@ -111,7 +111,9 @@ controller = {
 
 			if activity_text_flag then
 				activity_text_flag = false
-				textbox(outcome.text,nil,nil,7)
+				local prefix = "you rolled a: "..selected_activity.die.score.."! "
+				textbox(prefix..outcome.text,nil,nil,7)
+
 
 				meters[1].score = work_out_score(meters[1].score + (outcome.eng * 12))
 				meters[2].score = work_out_score(meters[2].score + (outcome.sua * 12))
